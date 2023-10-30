@@ -11,8 +11,6 @@ function generateWorks(categoryId) {
                 works = json.filter(function (work) {
                     // 1 == "1" => true (comparaison de valeurs)
                     // 1 === "1" => false (comparaison de valeurs et de types)
-                    // && => a et b
-                    // || => a ou b
                     return work.categoryId == categoryId;
                 });
             } else {
