@@ -10,7 +10,7 @@ function generateWorks(works){
 
         const work = works[i];
 
-        const sectionGallery = document.querySelector(".portfolio_gallery");
+        const sectionGallery = document.querySelector(".portfolio__gallery");
         const workElement = document.createElement("figure");
 
         const imgElement = document.createElement("img");
