@@ -192,7 +192,7 @@ footer nav ul {
 	justify-content: center;
 }
 
-.portfolio__filters--btn {
+.portfolio__filters--btn, .login-form__login--btn {
 	font-family: 'Syne';
 	color: #1D6154;
 	font-size: 16px;
@@ -205,7 +205,57 @@ footer nav ul {
 	border-radius: 60px;
 }
 
-.portfolio__filters--btn:focus {
+.portfolio__filters--btn:focus, .login-form__login--btn {
 	background-color: #1D6154;
 	color: white;
+}
+
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login h2 {
+	margin-bottom: 30px;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.login-form label {
+	margin-bottom: 7px;
+	font-weight: 500;
+}
+
+.login-form__email, .login-form__password {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	width: 33%;
+}
+
+.login-form__login {
+	margin-bottom: 30px;
+}
+
+.login-form__input {
+	height: 51px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding: 0px;
+}
+
+.login-form__forgot-password {
+	text-decoration: underline;
+	color: black;
+}
+
+.login-form__login--btn {
+	margin: 7px 0px 0px 0px;
+	padding: 14px 42px 14px 42px;
 }

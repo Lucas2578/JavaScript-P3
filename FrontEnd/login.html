@@ -24,23 +24,21 @@
 	</nav>
 </header>
 <main>
-	<section class="form">
-		<div class="form__title">
-			<h2>Log In</h2>
-		</div>
-		<form>
-			<div class="form__email">
+	<section class="login">
+		<h2>Log In</h2>
+		<form class="login-form">
+			<div class="login-form__email">
 				<label for="Email">E-mail</label>
-				<input type="email" id="email" name="email">
+				<input type="email" id="email" name="email" class="login-form__input">
 			</div>
-			<div class="form__password">
-				<label for="MotDePasse">Mot de passe</label>
-				<input type="password" id="password" name="password">
+			<div class="login-form__password">
+				<label for="MotDePasse"><p>Mot de passe</p></label>
+				<input type="password" id="password" name="password" class="login-form__input">
 			</div>
-			<div class="form__login">
-				<button type="submit" class="form__login--btn">Se connecter</button>
+			<div class="login-form__login">
+				<button type="submit" class="login-form__login--btn">Se connecter</button>
 			</div>
-			<a href="">Mot de passe oublié</a>
+			<a href="" class="login-form__forgot-password">Mot de passe oublié</a>
 		</form>
 	</section>
 </main>
