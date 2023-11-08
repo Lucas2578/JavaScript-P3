@@ -69,7 +69,6 @@ function generateWorksInModal() {
                 const deleteButton = document.createElement("button");
                 deleteButton.className = "deleted-button";
                 deleteButton.innerHTML = '<i class="fa-solid fa-trash-can fa-2xs"></i>';
-                deleteButton.setAttribute("data-work-id", work.id);
 
                 deleteButton.addEventListener("click", function () {
                     const workId = work.id;
