@@ -15,7 +15,6 @@ const closeModal = function (event) {
     modal.style.display = "none";
     modal.setAttribute('aria-hidden', 'true')
     modal.removeAttribute('aria-modal')
-    // modal.removeEventListener('click', closeModal)
     modal = null
 }
 
@@ -28,6 +27,7 @@ function deleteWork(workId) {
     fetch(`http://localhost:5678/api/works/${workId}`, {
         method: "DELETE",
         headers: {
+            // Jeton Bearer (jeton d'authentification utilisé dans les protocoles d'authentification et d'autorisation)
             "Authorization": `Bearer ${localStorage.getItem("authToken")}` // Assurez-vous d'inclure le jeton d'authentification si nécessaire
         }
     })
