@@ -89,3 +89,19 @@ document.querySelector('.js-modal').addEventListener('click', function() {
     // Applique un style cet élement
     document.getElementById("modal1").style.display = "flex";
 });
+
+// Récupérez le bouton "Ajouter une photo" dans la première modal
+const openModal2Button = document.getElementById("openModal2");
+
+// Récupérez les deux modales
+const modal1 = document.getElementById("modal1");
+const modal2 = document.getElementById("modal2");
+
+// Ajoutez un gestionnaire d'événements pour afficher la deuxième modal
+openModal2Button.addEventListener("click", function () {
+    // Masquez la première modal
+    modal1.style.display = "none";
+
+    // Affichez la deuxième modal
+    modal2.style.display = "flex";
+});

@@ -54,7 +54,35 @@
 					<div class="modal-wrapper__list-elements">
 					</div>
 					<hr>
-					<button class="modal-wrapper__add-btn">Ajouter une photo</button>
+					<button class="modal-wrapper__add-btn" id="openModal2">Ajouter une photo</button>
+				</div>
+			</aside>
+			<aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+				<div class="modal-wrapper">
+					<div class="modal-wrapper__close">
+						<button class="js-modal-close modal__close-btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
+					</div>
+					<h3>Ajout photo</h3>
+					<form id="addWorkForm" class="modal-wrapper__add-work" enctype="multipart/form-data">
+						<div class="modal-wrapper__add-work-dropzone" id="imageDropzone">
+							<i class="fa-regular fa-image"></i>
+							<button type="submit" id="addPhotoButton" class="modal-wrapper__add-work-dropzone-btn">+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+						</div>
+						<div id="imagePreviewContainer" style="display: none;">
+							<img id="imagePreview" alt="Aperçu de l'image" style="max-width: 100%;">
+						</div>
+						<div class="modal-wrapper__add-work-title">
+							<label for="title">Titre</label>
+							<input type="text" id="title" name="title" class="login-form__input">
+						</div>
+						<div class="modal-wrapper__add-work-categorie">
+							<label for="categorie">Catégorie</label>
+							<input type="text" id="categorie" name="categorie" class="login-form__input">
+						</div>
+					</form>
+					<hr>
+					<button class="modal-wrapper__add-btn">Valider</button>
 				</div>
 			</aside>
 		</div>

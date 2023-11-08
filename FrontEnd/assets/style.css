@@ -269,23 +269,31 @@ footer nav ul {
 	margin-bottom: 30px;
 }
 
-.login-form {
+.login-form, .modal-wrapper__add-work {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
 }
 
-.login-form label {
+.login-form label, .modal-wrapper__add-work label {
 	margin-bottom: 7px;
 	font-weight: 500;
 }
 
-.login-form__email, .login-form__password {
+.modal-wrapper__add-work label {
+	margin-bottom: 10px;
+}
+
+.login-form__email, .login-form__password, .modal-wrapper__add-work-title, .modal-wrapper__add-work-categorie {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 30px;
 	width: 33%;
+}
+
+.modal-wrapper__add-work-title, .modal-wrapper__add-work-categorie {
+	width: 75%;
 }
 
 .login-form__login {
@@ -330,8 +338,9 @@ footer nav ul {
     align-items: center;
     background-color: white;
 	max-width: 630px;
-	max-height: 688px;
+	height: 688px;
     width: 50%;
+	position: fixed;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 20px;
@@ -411,4 +420,38 @@ hr {
 
 .deleted-button i {
 	font-size: 100%;
+}
+
+.modal-wrapper__add-work-dropzone {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height: 169px;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	width: 75%;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+
+.modal-wrapper__add-work-dropzone i {
+	font-size: 80px;
+	color: #B9C5CC;
+}
+
+.modal-wrapper__add-work-dropzone-btn {
+	color: #306685;
+	background-color: #CBD6DC;
+	padding: 10px 33px 10px 33px;
+	border-radius: 50px;
+	border: none;
+	font-size: 14px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	margin: 7px;
+}
+
+.modal-wrapper__add-work-dropzone p {
+	margin-bottom: 10px;
 }
