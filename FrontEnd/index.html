@@ -65,12 +65,12 @@
 					<h3>Ajout photo</h3>
 					<form id="addWorkForm" class="modal-wrapper__add-work" enctype="multipart/form-data">
 						<div class="modal-wrapper__add-work-dropzone" id="imageDropzone">
-							<i class="fa-regular fa-image"></i>
-							<button type="submit" id="addPhotoButton" class="modal-wrapper__add-work-dropzone-btn">+ Ajouter photo</button>
-							<p>jpg, png : 4mo max</p>
-						</div>
-						<div id="imagePreviewContainer" style="display: none;">
-							<img id="imagePreview" alt="Aperçu de l'image" style="max-width: 100%;">
+							<i class="fa-regular fa-image js-previzualition-delete"></i>
+							<div id="imagePreviewContainer" style="display: none;">
+								<img id="imagePreview" alt="Aperçu de l'image" style="max-width: 100%;">
+							</div>
+							<button type="submit" id="addPhotoButton" class="modal-wrapper__add-work-dropzone-btn js-previzualition-delete">+ Ajouter photo</button>
+							<p class="js-previzualition-delete">jpg, png : 4mo max</p>
 						</div>
 						<div class="modal-wrapper__add-work-title">
 							<label for="title">Titre</label>

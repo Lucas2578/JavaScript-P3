@@ -5,7 +5,6 @@ const openModal = function (event) {
     target.removeAttribute('aria-hidden')
     target.setAttribute('aria-modal', 'true')
     modal = target
-    // modal.addEventListener('click', closeModal)
     modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
 }
 
@@ -104,4 +103,51 @@ openModal2Button.addEventListener("click", function () {
 
     // Affichez la deuxième modal
     modal2.style.display = "flex";
+});
+
+// Récupérez les éléments du formulaire et les éléments de la modal
+const addWorkForm = document.getElementById("addWorkForm");
+const imageDropzone = document.getElementById("imageDropzone");
+const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+const imagePreview = document.getElementById("imagePreview");
+const addPhotoButton = document.getElementById("addPhotoButton");
+
+// Écoutez l'événement "dragover" sur la zone de glisser-déposer pour éviter le comportement par défaut
+imageDropzone.addEventListener("dragover", function (event) {
+    event.preventDefault();
+});
+
+// Écoutez l'événement "drop" sur la zone de glisser-déposer pour gérer le glisser-déposer
+imageDropzone.addEventListener("drop", function (event) {
+    event.preventDefault();
+
+    const file = event.dataTransfer.files[0]; // Obtenez le fichier déposé
+
+    if (file && file.type.startsWith("image/")) {
+        // Vérifiez si le fichier est une image
+
+        // Affichez l'aperçu de l'image
+        imagePreview.src = URL.createObjectURL(file);
+        imagePreviewContainer.style.display = "block";
+
+        const deleteElements = document.querySelectorAll(".js-previzualition-delete");
+        deleteElements.forEach(function (element) {
+            element.style.display = "none";
+        });
+
+        // Activez le bouton "Ajouter photo" pour soumettre le formulaire
+        addPhotoButton.disabled = false;
+    }
+});
+
+// Ajoutez un gestionnaire d'événements pour soumettre le formulaire lorsque le bouton "Ajouter photo" est cliqué
+addWorkForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Obtenez les données du formulaire, y compris l'image, et envoyez-les au serveur
+    const formData = new FormData(addWorkForm);
+
+    // Envoyez le formulaire avec les données FormData au serveur
+    // (vous devrez implémenter cette partie en fonction de votre backend)
+    // Utilisez fetch ou un autre moyen pour envoyer les données au serveur.
 });
