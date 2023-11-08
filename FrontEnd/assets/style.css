@@ -83,7 +83,7 @@ h1 > span {
 	justify-content: center;
 }
 
-.portfolio__projects-title {
+.portfolio__projects-title, .login h2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -249,7 +249,12 @@ footer nav ul {
 	border-radius: 60px;
 }
 
-.portfolio__filters--btn:focus, .login-form__login--btn, .modal-wrapper__add-btn {
+.login-form__login--btn, .modal-wrapper__add-btn {
+	background-color: #1D6154;
+	color: white;
+}
+
+.btn-active {
 	background-color: #1D6154;
 	color: white;
 }

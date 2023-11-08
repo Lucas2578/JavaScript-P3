@@ -48,7 +48,9 @@ fetch("http://localhost:5678/api/categories").then(function (reponse) {
     let categories = [];
     categories.push({
         id: 0,
-        name: "Tous"
+        name: "Tous",
+        // On met la catégorie "Tous" qui renvoie par défaut "true" pour être sélectionné de base
+        isTrue: true
     });
     // On fusionne notre catégorie en dur avec les catégories en json
     generateCategories(categories.concat(json));
@@ -62,9 +64,25 @@ function generateCategories(categories) {
         const sectionFilters = document.querySelector(".portfolio__filters");
         const categoryElement = document.createElement("button");
         categoryElement.className = "portfolio__filters--btn";
+
+        // On ajoute la class "btn-active" à la catégorie qui renverra la valeur "True" dès la génération des catégories
+        if (category.isTrue) {
+            categoryElement.classList.add("btn-active");
+        }
+
         categoryElement.innerText = category.name;
+
         // Ajouter un évènement click sur chaque bouton pour re générer la liste des travaux avec le filtre correspondant à chaque bouton
         categoryElement.addEventListener("click", function () {
+            const categoryButtons = document.querySelectorAll(".portfolio__filters--btn");
+
+            // Supprimer "btn-active" de tous les boutons lorsqu'on clique sur une catégorie
+            categoryButtons.forEach(function (btn) {
+                btn.classList.remove("btn-active");
+            });
+
+            // Ajoutez la classe "btn-active" à l'élément de catégorie cliqué
+            categoryElement.classList.add("btn-active");
             // Appeler la fonction de génération des travaux en lui passant l'id de la catégorie
             generateWorks(category.id);
         });
