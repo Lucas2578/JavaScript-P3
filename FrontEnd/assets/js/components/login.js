@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentConfig = localStorage.getItem("appConfig");
 
         // Effectuez une requête POST vers votre API pour vérifier l'authentification
-        fetch("http://localhost:5678/api/users/login", {
+        fetch(API_ROUTES.LOGIN, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

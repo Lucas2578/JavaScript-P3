@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function deleteWork(workId) {
-    fetch(`http://localhost:5678/api/works/${workId}`, {
+    fetch(`${API_ROUTES.WORKS}/${workId}`, {
         method: "DELETE",
         headers: {
             // Jeton Bearer (jeton d'authentification utilisé dans les protocoles d'authentification et d'autorisation)
@@ -56,7 +56,7 @@ function deleteWork(workId) {
 
 // Créez une fonction pour générer les éléments des travaux dans la modale
 function generateWorksInModal() {
-    fetch("http://localhost:5678/api/works")
+    fetch(API_ROUTES.WORKS)
         .then(function (reponse) {
             return reponse.json();
         })

@@ -1,6 +1,6 @@
 // Génère les travaux
 function generateWorks(categoryId) {
-    fetch("http://localhost:5678/api/works")
+    fetch(API_ROUTES.WORKS)
         .then(function (reponse) {
             return reponse.json();
         })
@@ -41,7 +41,7 @@ function generateWorks(categoryId) {
         });
 }
 
-fetch("http://localhost:5678/api/categories").then(function (reponse) {
+fetch(API_ROUTES.CATEGORIES).then(function (reponse) {
     return reponse.json();
 }).then(function (json) {
     // Ajout d'une nouvelle catégorie en dur
