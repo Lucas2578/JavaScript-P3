@@ -1,6 +1,5 @@
 // Attendez que le DOM soit complètement chargé avant d'exécuter le code
 document.addEventListener("DOMContentLoaded", function () {
-    
     const authToken = localStorage.getItem("authToken");
     const editButton = document.querySelector('.portfolio__edit-btn');
 
@@ -30,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         modal2.style.display = 'flex';
     });
 
-    // Fermer la modale si on clic à l'extérieur
+    // Fermer la modale si on clique à l'extérieur
     window.addEventListener("click", function (event) {
         if (event.target === modal1) {
             modal1.style.display = 'none';
@@ -38,6 +37,27 @@ document.addEventListener("DOMContentLoaded", function () {
             modal2.style.display = 'none';
         }
     });
+
+    const addWorkForm = document.getElementById("addWorkForm");
+    const categorieSelect = document.getElementById("categorie");
+
+    // On récupère les catégories de façon dynamique à l'aide de l'API
+    fetch(API_ROUTES.CATEGORIES)
+        .then(response => response.json())
+        .then(categories => {
+            // On génère les options de la liste déroulante
+            categories.forEach(category => {
+                const option = document.createElement("option");
+                // Avec comme valeur l'id de la catégorie
+                option.value = category.id;
+                // Avec comme nom le nom de la catégorie
+                option.textContent = category.name;
+                // C'est un enfant de la balise <select>
+                categorieSelect.appendChild(option);
+            });
+        })
+
+        .catch(error => console.error("Erreur lors de la récupération des catégories :", error));
 });
 
 function deleteWork(workId) {
