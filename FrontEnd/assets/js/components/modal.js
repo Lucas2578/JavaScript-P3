@@ -29,6 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
         modal1.style.display = 'none';
         modal2.style.display = 'flex';
     });
+
+    // Fermer la modale si on clic à l'extérieur
+    window.addEventListener("click", function (event) {
+        if (event.target === modal1) {
+            modal1.style.display = 'none';
+        } else if (event.target === modal2) {
+            modal2.style.display = 'none';
+        }
+    });
 });
 
 function deleteWork(workId) {
