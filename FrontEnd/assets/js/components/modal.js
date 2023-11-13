@@ -1,25 +1,35 @@
-const openModal = function (event) {
-    event.preventDefault()
-    const target = document.querySelector(event.target.getAttribute('href'))
-    target.style.display = null;
-    target.removeAttribute('aria-hidden')
-    target.setAttribute('aria-modal', 'true')
-    modal = target
-    modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
-}
+// Attendez que le DOM soit complètement chargé avant d'exécuter le code
+document.addEventListener("DOMContentLoaded", function () {
+    
+    const authToken = localStorage.getItem("authToken");
+    const modifyButton = document.querySelector('.portfolio__edit-btn');
 
-const closeModal = function (event) {
-    if (modal === null) return
-    event.preventDefault()
-    modal.style.display = "none";
-    modal.setAttribute('aria-hidden', 'true')
-    modal.removeAttribute('aria-modal')
-    modal = null
-}
+    if (authToken) {
+        modifyButton.style.display = 'flex';
+    } else {
+        modifyButton.style.display = 'none';
+    }
 
-// Ajouter l'évènement pour ouvrir pour la modal
-document.querySelectorAll('.js-modal').forEach(a => {
-    a.addEventListener('click', openModal);
+    const closeButtonModal1 = document.querySelector('.js-modal-close');
+    const closeButtonModal2 = document.querySelector('.js-modal-close2');
+
+    // Ajoutez un gestionnaire d'événements pour le clic sur le bouton de fermeture de la première modale
+    closeButtonModal1.addEventListener('click', function () {
+        modal1.style.display = 'none';
+    });
+
+    // Ajoutez un gestionnaire d'événements pour le clic sur le bouton de fermeture de la deuxième modale
+    closeButtonModal2.addEventListener('click', function () {
+        modal2.style.display = 'none';
+    });
+
+    const openModal2Button = document.getElementById("openModal2");
+
+    // Ajoutez un gestionnaire d'événements pour le clic sur le bouton d'ouverture de la deuxième modale
+    openModal2Button.addEventListener("click", function () {
+        modal1.style.display = 'none';
+        modal2.style.display = 'flex';
+    });
 });
 
 function deleteWork(workId) {
@@ -27,7 +37,7 @@ function deleteWork(workId) {
         method: "DELETE",
         headers: {
             // Jeton Bearer (jeton d'authentification utilisé dans les protocoles d'authentification et d'autorisation)
-            "Authorization": `Bearer ${localStorage.getItem("authToken")}` // Assurez-vous d'inclure le jeton d'authentification si nécessaire
+            "Authorization": `Bearer ${localStorage.getItem("authToken")}`
         }
     })
         .then(response => {
@@ -96,14 +106,7 @@ const openModal2Button = document.getElementById("openModal2");
 const modal1 = document.getElementById("modal1");
 const modal2 = document.getElementById("modal2");
 
-// Ajoutez un gestionnaire d'événements pour afficher la deuxième modal
-openModal2Button.addEventListener("click", function () {
-    // Masquez la première modal
-    modal1.style.display = "none";
-
-    // Affichez la deuxième modal
-    modal2.style.display = "flex";
-});
+////// DRAG AND DROP SECTION //////
 
 // Récupérez les éléments du formulaire et les éléments de la modal
 const addWorkForm = document.getElementById("addWorkForm");
@@ -130,7 +133,7 @@ imageDropzone.addEventListener("drop", function (event) {
         imagePreview.src = URL.createObjectURL(file);
         imagePreviewContainer.style.display = "block";
 
-        const deleteElements = document.querySelectorAll(".js-previzualition-delete");
+        const deleteElements = document.querySelectorAll(".js-preview-delete");
         deleteElements.forEach(function (element) {
             element.style.display = "none";
         });
@@ -140,14 +143,22 @@ imageDropzone.addEventListener("drop", function (event) {
     }
 });
 
-// Ajoutez un gestionnaire d'événements pour soumettre le formulaire lorsque le bouton "Ajouter photo" est cliqué
-addWorkForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+// Ajoute un gestionnaire d'événements à l'élément input "addPhotoButton" pour détecter le changement de fichier
+addPhotoButton.addEventListener("change", function (event) {
+    // Récupère le fichier choisi par l'utilisateur
+    const file = event.target.files[0]; // Obtenez le fichier choisi
 
-    // Obtenez les données du formulaire, y compris l'image, et envoyez-les au serveur
-    const formData = new FormData(addWorkForm);
+    if (file && file.type.startsWith("image/")) {
 
-    // Envoyez le formulaire avec les données FormData au serveur
-    // (vous devrez implémenter cette partie en fonction de votre backend)
-    // Utilisez fetch ou un autre moyen pour envoyer les données au serveur.
+        // Affiche un aperçu de l'image sélectionnée
+        imagePreview.src = URL.createObjectURL(file); // Créer un URL temporaire pour l'aperçu de l'image
+        imagePreviewContainer.style.display = "flex"; // Affiche l'élément contenant l'aperçu
+
+        // Cache les éléments ayant la classe "js-preview-delete" (par exemple : "jpg, png : 4mo max")
+        const deleteElements = document.querySelectorAll(".js-preview-delete");
+        deleteElements.forEach(function (element) {
+            element.style.display = "none";
+        });
+    }
 });
+
