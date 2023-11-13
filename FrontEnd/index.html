@@ -13,15 +13,17 @@
 	<script src="assets/js/components/const.js" defer></script>
 	<script src="assets/js/script.js" defer></script>
 	<script src="assets/js/components/modal.js" defer></script>
+	<script src="assets/js/components/logout.js" defer></script>
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<a href="index.html"><h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1></a>
 	<nav>
 		<ul>
 			<li><a href="#nav__projects">projets</a></li>
 			<li><a href="#nav__contact">contact</a></li>
-			<li><a href="login.html">login</a></li>
+			<li class="js-login"><a href="login.html">login</a></li>
+			<li class="js-logout"><a href="index.html">logout</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -105,7 +107,7 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input type="submit" class="nav__contact-btn--submit" value="Envoyer">
 		</form>
 	</section>
 </main>
