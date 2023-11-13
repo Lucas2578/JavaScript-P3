@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const authToken = localStorage.getItem("authToken");
     const editButton = document.querySelector('.portfolio__edit-btn');
 
+    // Si l'utilisateur possède le token de connexion, cela affichera le bouton "modifier"
     if (authToken) {
         editButton.style.display = 'flex';
     }
@@ -34,7 +35,9 @@ function deleteWork(workId) {
     fetch(`${API_ROUTES.WORKS}/${workId}`, {
         method: "DELETE",
         headers: {
-            // Jeton Bearer (jeton d'authentification utilisé dans les protocoles d'authentification et d'autorisation)
+            // Ajoute l'en-tête "Authorization" à la requête HTTP avec le token d'authentification
+            // Ceci permet d'authentifier l'utilisateur lors de la suppression d'un travail (work) via l'API.
+            // Le token d'authentification est récupéré depuis le localStorage et inclus dans le format "Bearer [le_token]".
             "Authorization": `Bearer ${localStorage.getItem("authToken")}`
         }
     })
@@ -52,7 +55,7 @@ function deleteWork(workId) {
         });
 }
 
-// Créez une fonction pour générer les éléments des travaux dans la modale
+// Fonction pour générer les éléments des travaux dans la modale
 function generateWorksInModal() {
     fetch(API_ROUTES.WORKS)
         .then(function (reponse) {

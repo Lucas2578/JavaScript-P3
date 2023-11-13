@@ -2,19 +2,18 @@
 function generateWorks(categoryId) {
     fetch(API_ROUTES.WORKS)
         .then(function (reponse) {
+            // Permet d'extraire le corps de la réponse http sous forme json
             return reponse.json();
         })
         .then(function (json) {
             let works = [];
-            // On filtre les travaux uniquement si la catégorie sélectionnée n'est pas Tous
+            // On filtre les travaux uniquement si la catégorie sélectionnée n'est pas "Tous"
             if (categoryId != 0) {
                 works = json.filter(function (work) {
-                    // 1 == "1" => true (comparaison de valeurs)
-                    // 1 === "1" => false (comparaison de valeurs et de types)
                     return work.categoryId == categoryId;
                 });
             } else {
-                // Pas de filtre quand la catégorie Tous est sélectionnée
+                // Pas de filtre quand la catégorie "Tous" est sélectionnée
                 works = json;
             }
 
@@ -49,7 +48,7 @@ fetch(API_ROUTES.CATEGORIES).then(function (reponse) {
     categories.push({
         id: 0,
         name: "Tous",
-        // On met la catégorie "Tous" qui renvoie par défaut "true" pour être sélectionné de base
+        // On met la catégorie "Tous" qui renvoie par défaut la propriété isTrue: true pour être sélectionné de base
         isTrue: true
     });
     // On fusionne notre catégorie en dur avec les catégories en json
