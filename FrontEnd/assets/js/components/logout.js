@@ -26,7 +26,4 @@ document.addEventListener("DOMContentLoaded", function () {
 function logout() {
     // Permet de supprimer le token de connexion étant dans le localStorage
     localStorage.removeItem('authToken');
-
-    // Permet de rediriger l'utilisateur vers la page principale
-    window.location.href = "index.html";
 };
