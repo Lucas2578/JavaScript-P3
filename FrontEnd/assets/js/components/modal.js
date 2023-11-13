@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (authToken) {
         modifyButton.style.display = 'flex';
-    } else {
-        modifyButton.style.display = 'none';
     }
 
     const closeButtonModal1 = document.querySelector('.js-modal-close');
