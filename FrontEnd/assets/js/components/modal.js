@@ -39,6 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const addWorkForm = document.getElementById("addWorkForm");
+
+    addWorkForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+
     const categorieSelect = document.getElementById("categorie");
 
     // On récupère les catégories de façon dynamique à l'aide de l'API
@@ -58,6 +63,61 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 
         .catch(error => console.error("Erreur lors de la récupération des catégories :", error));
+        const submitButton = document.querySelector('.js-addWork');
+
+        // Ajouter un gestionnaire d'événements pour le formulaire d'ajout de travail
+        submitButton.addEventListener("click", function (event) {
+            event.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
+    
+            // Récupérer les valeurs des champs du formulaire
+            const image = document.getElementById("addPhotoButton");
+            const title = document.getElementById("title").value;
+            const category = document.getElementById("categorie").value;
+
+            if (title === "" || image.files.length === 0) {
+                alert("Merci de remplir tous les champs");
+            } else {
+
+                // Récupérer le token d'authentification depuis le localStorage
+                const authToken = localStorage.getItem("authToken");
+        
+                // Vérifier si toutes les informations nécessaires sont présentes
+                if (image && title && category && authToken) {
+                    // Préparer les données à envoyer à l'API
+                    const formData = new FormData();
+                    console.log('form data image input', image.files);
+                    formData.append("image", image.files[0]);
+                    formData.append("title", title);
+                    formData.append("category", category);
+        
+                    // Envoyer de la requête à l'API pour ajouter un nouveau travail
+                    fetch(`${API_ROUTES.WORKS}`, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
+                        },
+                        body: formData,
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Gérer la réponse de l'API (par exemple, affichez un message de succès)
+                            console.log("Travail ajouté avec succès:", data);
+        
+                            // Réinitialiser le formulaire ou effectuez d'autres actions nécessaires
+                            addWorkForm.reset();
+        
+                            // Mettre à jour l'affichage des travaux dans la après l'ajout
+                            generateWorksInModal();
+
+                            // Re-génère les travaux avec les nouveaux travaux
+                            generateWorks(0);
+                        })
+                        .catch(error => console.error("Erreur lors de l'ajout du travail :", error));
+                } else {
+                    console.error("Informations manquantes pour l'ajout du travail.");
+                }
+            }
+        });
 });
 
 function deleteWork(workId) {
@@ -155,9 +215,10 @@ imageDropzone.addEventListener("drop", function (event) {
     event.preventDefault();
 
     const file = event.dataTransfer.files[0]; // Obtenez le fichier déposé
-
+    // Vérifiez si le fichier est une image
     if (file && file.type.startsWith("image/")) {
-        // Vérifiez si le fichier est une image
+
+        addPhotoButton.files = event.dataTransfer.files;
 
         // Affichez l'aperçu de l'image
         imagePreview.src = URL.createObjectURL(file);
@@ -191,4 +252,3 @@ addPhotoButton.addEventListener("change", function (event) {
         });
     }
 });
-
