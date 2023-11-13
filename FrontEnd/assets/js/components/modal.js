@@ -2,10 +2,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     const authToken = localStorage.getItem("authToken");
-    const modifyButton = document.querySelector('.portfolio__edit-btn');
+    const editButton = document.querySelector('.portfolio__edit-btn');
 
     if (authToken) {
-        modifyButton.style.display = 'flex';
+        editButton.style.display = 'flex';
     }
 
     const closeButtonModal1 = document.querySelector('.js-modal-close');
