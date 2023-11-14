@@ -8,21 +8,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        // Créez un objet avec les informations d'authentification
+        // On créer un objet avec les informations récupérées du formulaire
         const authData = {
             email: email,
             password: password
         };
 
-        // Obtenez la configuration actuelle de l'application
+        // On obtient la configuration actuelle du localStorage
         const currentConfig = localStorage.getItem("appConfig");
 
-        // Effectuez une requête POST vers votre API pour vérifier l'authentification
+        // On fait une requête POST pour vérifier l'authentification
         fetch(`${API_ROUTES.LOGIN}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
+            // On insère ici un .json avec comme informations ceux de la variable authData
             body: JSON.stringify(authData)
         })
             .then(response => {
@@ -33,17 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .then(data => {
-                // Authentification réussie, obtenir un token
-                const authToken = data.token; // Remplacez par le vrai token
+                // Si l'authentification est réussie, on obtient le token de connexion qu'on stock dans authToken
+                const authToken = data.token;
                 localStorage.setItem("authToken", authToken);
 
-                // Restaurez la configuration de l'application si elle existe
-                if (currentConfig) {
-                    localStorage.setItem("appConfig", currentConfig);
-                }
-
                 alert("Connexion réussie !");
-                window.location.href = "index.html"; // Rediriger l'utilisateur vers la page d'accueil
+                window.location.href = "index.html";
             })
             .catch(error => {
                 alert("Connexion échouée. Vérifiez vos identifiants.");
@@ -51,12 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // Vérifier l'authentification à l'ouverture de la page
+    // On vérifie si l'utilisateur est déjà connecté lorsqu'il arrive sur la page
     const authToken = localStorage.getItem("authToken");
 
     if (authToken) {
-        // L'utilisateur est déjà authentifié, vous pouvez effectuer des actions en fonction de cela.
-        // Rediriger vers la page d'accueil
+        // Si oui, on le rediriger vers la page d'accueil
         window.location.href = "index.html";
     }
 });

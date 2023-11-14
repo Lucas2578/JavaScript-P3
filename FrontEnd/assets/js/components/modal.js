@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
             if (modal) {
                 modal.style.display = 'none';
+                closeAndResetModal();
             }
         });
     });
@@ -43,8 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("click", function (event) {
         if (event.target === modal1) {
             modal1.style.display = 'none';
+            closeAndResetModal();
         } else if (event.target === modal2) {
             modal2.style.display = 'none';
+            closeAndResetModal();
         }
     });
 
